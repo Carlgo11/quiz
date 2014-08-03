@@ -26,7 +26,7 @@
 
                     if ($pass == $config['adminpassword']) {
                         header('Location: index.php');
-                        $_SESSION['admin'] == "true";
+                        $_SESSION['admin'] = "true";
                         
                     } else {
                         error("Incorrect password. <br> (The password can be found in config.ini)");
