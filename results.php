@@ -38,27 +38,6 @@
             }
             $o = $q;
             echo "<div class='panel panel-default'><div class='panel-heading'>Resultat för grupp <b>" . ucfirst($name) . "</b></div><div class='panel-body'>";
-            if ($result == 0) {
-                echo "looooool! ";
-            } else if ($result == 1) {
-                
-            } else if ($result == 2) {
-                
-            } else if ($result == 3) {
-                
-            } else if ($result == 4) {
-                
-            } else if ($result == 5) {
-                
-            } else if ($result == 6) {
-                
-            } else if ($result == 7) {
-                
-            } else if ($result == 8) {
-                echo "Bravo! ";
-            } else if ($result == 9) {
-                echo "Grattis! ";
-            }
             echo "Ni hade " . $result . " rätt av " . $o;
             echo "</div>";
 

@@ -1,16 +1,9 @@
 <?php
 
-include'admin.php';
+include'session.php';
 $config = parse_ini_file("../config.ini");
 
-$url = $config['url'];
-$user = $config['user'];
-$password = $config['password'];
-$db = $config['database'];
-$table = $config['table'];
 $q = $config['questions'];
-$connect = mysql_connect($url, $db, $password) or die("Connection problem.");
-mysql_select_db($db) or die("Couldn't connect to database");
 
 if (isset($_POST['subDoLoginAction'])) {
     post();
@@ -27,7 +20,7 @@ function post() {
     $db = $config['database'];
     $answers = $config['answers'];
     $table = $config['table'];
-    $q = 24;
+    $q = $config['questions'];
 
     $connect = mysql_connect($url, $user, $password) or die("Connection problem.");
     mysql_select_db($db) or die("Couldn't connect to the database");
@@ -35,57 +28,58 @@ function post() {
     $c = array();
     for ($i = 0; $i <= $q; $i++) {
         $s[] = "`r" . $i . "` text";
-        $c[] = "`q".$i."` text";
+        $c[] = "`q" . $i . "` text";
     }
 
     $sunq = implode(", ", $s);
     $cunq = implode(", ", $s);
     $aquery = "CREATE TABLE IF NOT EXISTS " . $answers . " (" . $sunq . ")";
-    $bquery = "CREATE TABLE IF NOT EXISTS ".$table." (".$cunq.")";
-    
+    $bquery = "CREATE TABLE IF NOT EXISTS " . $table . " (" . "name text, result text, " . $cunq . ")";
     $querya = mysql_query($aquery);
     $queryb = mysql_query($bquery);
-    
-    
-    
+
+
+
     $w = array();
     $r = array();
-for ($i = 1; $i <= $q; $i++) {
+    for ($i = 1; $i <= $q; $i++) {
 
-    $one;
-    $x;
-    $two;
-    if (empty($_POST[$i . "1"])) {
-        $one = 0;
-    } else {
-        $one = 1;
+        $one;
+        $x;
+        $two;
+        if (empty($_POST[$i . "1"])) {
+            $one = 0;
+        } else {
+            $one = 1;
+        }
+
+        if (empty($_POST[$i . "x"])) {
+            $x = 0;
+        } else {
+            $x = 1;
+        }
+
+        if (empty($_POST[$i . "2"])) {
+            $two = 0;
+        } else {
+            $two = 1;
+        }
+        $w[] = "`r" . $i . "`";
+        $r[] = "'" . $one . $x . $two . "'";
     }
+    $e = implode(", ", $w);
+    $y = implode(", ", $r);
 
-    if (empty($_POST[$i . "x"])) {
-        $x = 0;
-    } else {
-        $x = 1;
-    }
-
-    if (empty($_POST[$i . "2"])) {
-        $two = 0;
-    } else {
-        $two = 1;
-    }
-    $w[] = "`r" . $i . "`";
-    $r[] = "'" . $one . $x . $two . "'";
-}
-$e = implode(", ", $w);
-$y = implode(", ", $r);
-
-$cquery = "INSERT INTO `" . $answers . "` (" . $e . ") VALUES (".$y.")";
-$qyeryb = mysql_query($cquery);
+    $cquery = "INSERT INTO `" . $answers . "` (" . $e . ") VALUES (" . $y . ")";
+    $empty = mysql_query("TRUNCATE TABLE `answers`");
+    $qyeryb = mysql_query($cquery);
     $result = 0;
     include '../resources/header.php';
     echo '<body>
         <div class="container" style="margin-top: 80px">
         <h2>Answers sent!</h2>
         <h3>The quiz is now ready to be used.<h3>';
+    session_destroy();
 }
 
 function setup($q) {
