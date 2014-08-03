@@ -11,8 +11,6 @@
                 <div align="right"><button class="btn btn-primary " type="submit" name="subDoLoginAction" style="margin-top: 5px" >Logga in</button></div>
 
                 <?php
-                $config = parse_ini_file("config.ini");
-
 
                 if (isset($_POST['subDoLoginAction'])) {
 
@@ -20,12 +18,13 @@
                 }
 
                 function doLogin() {
+                    $config = parse_ini_file("config.ini");
                     session_start();
 
                     $name = $_POST["grupp"];
                     $name = strtolower($name);
                     $enabled = true;
-
+                    
                     $url = $config['url'];
                     $user = $config['user'];
                     $password = $config['password'];
