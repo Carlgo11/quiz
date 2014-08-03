@@ -7,11 +7,10 @@
         <div class="container" style="margin-top: 80px">
             <form class="form-signin" role="form" action="" method="POST">
                 <h2 class="form-signin-heading">Skriv in din grupp</h2>
-                <input type="username" name="grupp" class="form-control" placeholder="Grupp" required="" autofocus="" autocomplete="off" style="margin-top: 20px">
+                <input type="username" name="name" class="form-control" placeholder="Name" required="" autofocus="" autocomplete="off" style="margin-top: 20px">
                 <div align="right"><button class="btn btn-primary " type="submit" name="subDoLoginAction" style="margin-top: 5px" >Logga in</button></div>
 
                 <?php
-
                 if (isset($_POST['subDoLoginAction'])) {
 
                     doLogin();
@@ -21,10 +20,10 @@
                     $config = parse_ini_file("config.ini");
                     session_start();
 
-                    $name = $_POST["grupp"];
+                    $name = $_POST["name"];
                     $name = strtolower($name);
                     $enabled = true;
-                    
+
                     $url = $config['url'];
                     $user = $config['user'];
                     $password = $config['password'];
@@ -48,25 +47,25 @@
                             for ($i = 1; $i <= $q; $i++) {
                                 $s[] = "`q" . $i . "`";
                             }
-                            for($j = 0; $j < $i; $j++){
-                                $w[]="NULL";
+                            for ($j = 0; $j < $i; $j++) {
+                                $w[] = "NULL";
                             }
 
                             $sunq = implode(", ", $s);
                             $wunq = implode(", ", $w);
-                            $qs = "INSERT INTO `q_table` (`name`, " . $sunq . ") VALUES ('" . $name . "', '.$wunq.');";
-                            echo $qs;
+                            $qs = "INSERT INTO `".$table."` (`name`, `result`, " . $sunq . ") VALUES ('" . $name . "', NULL, '.$wunq.');";
                             $query = mysql_query($qs);
 
-                            //           header('Location: index.php');
+                            header('Location: index.php');
                             $_SESSION['name'] = $name;
                         } else {
                             error("Det finns redan en grupp med det namnet!");
                         }
                     }
                 }
-                function error($msg){
-                    echo '<br><div class="alert alert-danger">'.$msg.' </div>';
+
+                function error($msg) {
+                    echo '<br><div class="alert alert-danger">' . $msg . ' </div>';
                     exit();
                 }
                 ?>
