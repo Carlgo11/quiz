@@ -68,6 +68,7 @@
                 }
                 function error($msg){
                     echo '<br><div class="alert alert-danger">'.$msg.' </div>';
+                    exit();
                 }
                 ?>
             </form>
