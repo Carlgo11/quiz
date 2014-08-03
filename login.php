@@ -34,8 +34,8 @@
                     $q = 24;
 
                     if ($enabled) {
-                        $connect = mysql_connect($url, $user, $password) or die("Connection problem.");
-                        mysql_select_db($db) or die("Couldn't connect to the database");
+                        $connect = mysql_connect($url, $user, $password) or error("Connection problem.");
+                        mysql_select_db($db) or error("Couldn't connect to the database");
 
 
                         $query = mysql_query("SELECT * FROM " . $table . " WHERE name='$name'");
@@ -45,21 +45,29 @@
                         if ($numrow == 0) {
 
                             $s = array();
+                            $w = array();
                             for ($i = 1; $i <= $q; $i++) {
                                 $s[] = "`q" . $i . "`";
                             }
+                            for($j = 0; $j < $i; $j++){
+                                $w[]="NULL";
+                            }
 
                             $sunq = implode(", ", $s);
-                            $qs = "INSERT INTO `q_table` (`name`, " . $sunq . ") VALUES ('" . $name . "', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);";
+                            $wunq = implode(", ", $w);
+                            $qs = "INSERT INTO `q_table` (`name`, " . $sunq . ") VALUES ('" . $name . "', '.$wunq.');";
                             echo $qs;
                             $query = mysql_query($qs);
 
                             //           header('Location: index.php');
                             $_SESSION['name'] = $name;
                         } else {
-                            echo '<br><div class="alert alert-danger">Det finns redan en grupp med det namnet! </div>';
+                            error("Det finns redan en grupp med det namnet!");
                         }
                     }
+                }
+                function error($msg){
+                    echo '<br><div class="alert alert-danger">'.$msg.' </div>';
                 }
                 ?>
             </form>
