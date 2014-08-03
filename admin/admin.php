@@ -1,6 +1,6 @@
 <?php
 session_start();
-if($_SESSION['admin'] != true){
-    header('Location: '.'index.php');
+if(!$_SESSION['admin']){
+   // header('Location: '.'login.php');
 }
 ?>

@@ -1,44 +1,72 @@
-<!DOCTYPE html>
-<html>
-    <?php
+<?php
+
+include'admin.php';
+$config = parse_ini_file("../config.ini");
+
+$url = $config['url'];
+$user = $config['user'];
+$password = $config['password'];
+$db = $config['database'];
+$table = $config['table'];
+$connect = mysql_connect($url, $db, $password) or die("Connection problem.");
+mysql_select_db($db) or die("Couldn't connect to database");
+
+if (isset($_POST['subDoLoginAction'])) {
+
+    post();
+} else {
+    setup();
+}
+
+function post() {
+    $config = parse_ini_file("../config.ini");
+
+    $url = $config['url'];
+    $user = $config['user'];
+    $password = $config['password'];
+    $db = $config['database'];
+    $table = $config['table'];
+    $admin = $config['admin-password'];
+    $q = 24;
+
+    $connect = mysql_connect($url, $user, $password) or die("Connection problem.");
+    mysql_select_db($db) or die("Couldn't connect to the database");
+    $s = array();
+    $s[] = "name text";
+    for ($i = 0; $i <= $q; $i++) {
+        $s[] = "`q" . $i . "` text";
+    }
+
+    $sunq = implode(", ", $s);
+    $cquery = "CREATE TABLE IF NOT EXISTS " . $table . " (" . $sunq . ")";
+    $query = mysql_query($cquery);
+}
+
+function setup() {
+    $result = 0;
     include '../resources/header.php';
-    ?>
-    <body>
+    echo '<body>
         <div class="container" style="margin-top: 80px">
-            <form class="form-signin" role="form" action="" method="POST">
-                <h2 class="form-signin-heading">Enter admin password</h2>
-                <input type="password" name="password" class="form-control" placeholder="Password" required="" autofocus="" autocomplete="off" style="margin-top: 20px">
-                <div align="right"><button class="btn btn-primary " type="submit" name="subDoLoginAction" style="margin-top: 5px" >Login</button></div>
-
-
-                <?php
-                session_start();
-                if (isset($_POST['subDoLoginAction'])) {
-
-                    doLogin();
-                }
-
-                function doLogin() {
-
-                    $pass = $_POST["password"];
-                    $config = parse_ini_file("../config.ini");
-
-
-                    if ($pass == $config['adminpassword']) {
-                        header('Location: setup.php');
-                        $_SESSION['admin'] == true;
-                        
-                    } else {
-                        error("Incorrect password. <br> (The password can be found in config.ini)");
-                    }
-                }
-
-                function error($msg) {
-                    echo '<br><div class="alert alert-danger">' . $msg . ' </div>';
-                    exit();
-                }
-                ?>
-            </form>
-        </div>
+        <form role="form" action="" method="POST">
+                ';
+    for ($i = 1; $i <= $q; $i++) {
+        echo '<div name="q' . $i . '" style="margin-top: 40px">
+        <h2>Enter the correct answers</h2>
+            <h2>Fråga ' . $i . ':</h2>
+            <div class="checkbox"><label><input type="checkbox" name="' . $i . '1">1</label></div>
+            <div class="checkbox"><label><input type="checkbox" name="' . $i . 'x">x</label></div>
+            <div class="checkbox"><label><input type="checkbox" name="' . $i . '2">2</label></div>
+            </div>';
+    }
+    echo'<br><button class="btn btn-primary btn-default" type="submit" style="margin-top: 10px">Submit</button>
+        </form></div>
     </body>
-</html>
+</html>';
+}
+?>
+
+
+
+
+
+
