@@ -1,12 +1,16 @@
-<?php include'session.php';
+<?php
 
-$grupp = $_SESSION['grupp'];
-$table = $_SESSION['table'];
-$db = $_SESSION['db'];
-$user = $_SESSION['user'];
-$url = $_SESSION['url'];
-$db = "jon";
-$connect = mysql_connect($url,$db , "6HmnPm66vGN8MawH") or die("Connection problem.");
+include'session.php';
+$config = parse_ini_file("config.ini");
+
+$name = $_SESSION['name'];
+$url = $config['url'];
+$user = $config['user'];
+$password = $config['password'];
+$db = $config['database'];
+$table = $config['table'];
+$q = $config['questions'];
+$connect = mysql_connect($url, $db, $password) or die("Connection problem.");
 mysql_select_db($db) or die("Couldn't connect to database");
 
 
@@ -17,7 +21,7 @@ echo '
         <div class="container" style="margin-top: 80px">
         <form role="form" action="send.php" method="POST">
                 ';
-for ($i = 1; $i <= $_SESSION['q']; $i++) {
+for ($i = 1; $i <= $q; $i++) {
     echo '<div name="q' . $i . '" style="margin-top: 40px">
             <h2>Fråga ' . $i . ':</h2>
             <div class="checkbox"><label><input type="checkbox" name="' . $i . '1">1</label></div>

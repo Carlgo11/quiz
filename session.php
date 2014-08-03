@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(!$_SESSION['grupp']){
+if(!$_SESSION['name']){
     header('Location: '.'login.php');
 }
 ?>
