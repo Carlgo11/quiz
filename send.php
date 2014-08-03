@@ -2,13 +2,15 @@
 include 'session.php';
 
 $grupp = $_SESSION['grupp'];
-$db = "midsommar";
- $connect = mysql_connect("localhost", "midsommar", "VDqR9R3ZyJb9UzFm") or die("Connection problem.");
+$table = $_SESSION['table'];
+$db = $_SESSION['db'];
+ $connect = mysql_connect("localhost", "jon", "6HmnPm66vGN8MawH") or die("Connection problem.");
     mysql_select_db($db) or die ("Couldn't connect to database");
     
     
-$right = 0;   
-for($i = 1; $i < $_SESSION['q']; $i++){
+$right = 0;
+$w = array();   
+for($i = 1; $i <= $_SESSION['q']; $i++){
 
     $one;
     $x;
@@ -33,8 +35,12 @@ for($i = 1; $i < $_SESSION['q']; $i++){
         $two = 1;
     }
     echo $two;
-
-    $query = mysql_query("UPDATE ".$db." SET `r".$i."` = '".$one.$x.$two."' WHERE grupp='$grupp'");
+$w[] = "`q".$i."` = '".$one.$x.$two."'";
 }
-mysql_query("UPDATE ".$db." SET `done` = '1' WHERE grupp='".$grupp."'");
+$e = implode(", ", $w);
+
+    $qu = "UPDATE ".$table." SET ".$e." WHERE name='$grupp'";
+echo " ".$qu;
+    $query = mysql_query($qu);
+
 header('Location: results.php');

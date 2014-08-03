@@ -14,6 +14,7 @@ $grupp = $_SESSION['grupp'];
 $table2 = $_SESSION['table'];
 $url = $_SESSION['url'];
 $user = $_SESSION['user'];
+$q = $_SESSION['q'];
 $db = "jon";
 $table = "answers";
  $connect = mysql_connect($url, $user, "6HmnPm66vGN8MawH") or die(mysql_error());
@@ -27,12 +28,15 @@ $ba = "SELECT * FROM ".$table2." WHERE `name`='".$grupp."'";
      $bc = mysql_query($ba) or die(mysql_error());
      $ra = mysql_fetch_array($a);
      $rb = mysql_fetch_array($bc);
-for($i = 1; $i < $_SESSION['q']; $i++){
-    if($ra['r'.$i] == $rb['r'.$i]){
+for($i = 1; $i <= $_SESSION['q']; $i++){
+    if($ra['r'.$i] == $rb['q'.$i]){
         $result++;
         }
+//echo $ba;
+//echo "r$i:". $ra['r'.$i].", ";
+//echo "q$i:". $rb['q'.$i].", ";
 }
-$o = $i-1;
+$o = $q;
 echo "<div class='panel panel-default'><div class='panel-heading'>Resultat för grupp <b>".ucfirst($grupp)."</b></div><div class='panel-body'>";
 if($result == 0){
  echo "looooool! ";    

@@ -17,7 +17,7 @@ echo '
         <div class="container" style="margin-top: 80px">
         <form role="form" action="send.php" method="POST">
                 ';
-for ($i = 1; $i < $_SESSION['q']; $i++) {
+for ($i = 1; $i <= $_SESSION['q']; $i++) {
     echo '<div name="q' . $i . '" style="margin-top: 40px">
             <h2>Fråga ' . $i . ':</h2>
             <div class="checkbox"><label><input type="checkbox" name="' . $i . '1">1</label></div>

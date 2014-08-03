@@ -10,7 +10,7 @@ $user = "jon";
 $password = "6HmnPm66vGN8MawH";
 $db = "jon";
 $table = "q_table";
-$q = 10;
+$q = 24;
 
 if ($enabled) {
     $connect = mysql_connect($url, $user, $password) or die("Connection problem.");
@@ -24,14 +24,14 @@ if ($enabled) {
     if ($numrow == 0) {
 
 $s = array();
-for ($i=0; $i<=$q; $i++) {
+for ($i=1; $i<=$q; $i++) {
         $s[] = "`q".$i."`";
 }
 
 $sunq = implode(", ", $s);
-echo "$sunq: ". $sunq;
-$qs = "INSERT INTO `q_table` (`name`, ".$sunq.") VALUES ('".$grupp."', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);";
-
+//echo "$sunq: ". $sunq;
+$qs = "INSERT INTO `q_table` (`name`, ".$sunq.") VALUES ('".$grupp."', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);";
+echo $qs;
     $query = mysql_query($qs);
 
             header('Location: index.php');

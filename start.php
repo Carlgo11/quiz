@@ -4,7 +4,7 @@ $user = "jon";
 $password = "6HmnPm66vGN8MawH";
 $db = "jon";
 $table = "q_table";
-$q = 10;
+$q = 24;
 
     $connect = mysql_connect($url, $user, $password) or die("Connection problem.");
     mysql_select_db($db) or die("Couldn't connect to the database");
