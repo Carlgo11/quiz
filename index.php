@@ -34,9 +34,9 @@ function answer() {
         echo '<div name="q' . $i . '" style="margin-top: 40px">
             <div class="panel panel-default"><div class="panel-heading">
             <h2>' . $Lang["question"] . ' ' . $i . ':</h2></div><div class="panel-body">
-            <div class="checkbox"><label><input type="checkbox" name="' . $i . '1">1</label></div>
-            <div class="checkbox"><label><input type="checkbox" name="' . $i . 'x">x</label></div>
-            <div class="checkbox"><label><input type="checkbox" name="' . $i . '2">2</label></div>
+            <div class="checkbox"><label><input type="checkbox" name="' . $i . '1">'.$Lang["1"].'</label></div>
+            <div class="checkbox"><label><input type="checkbox" name="' . $i . 'x">'.$Lang["x"].'</label></div>
+            <div class="checkbox"><label><input type="checkbox" name="' . $i . '2">'.$Lang["2"].'</label></div>
             </div></div>';
     }
     echo'

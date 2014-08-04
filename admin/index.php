@@ -94,9 +94,9 @@ function setup($q) {
         echo '<div name="q' . $i . '" style="margin-top: 40px">
             <div class="panel panel-default"><div class="panel-heading">
             <h2>Question ' . $i . ':</h2></div><div class="panel-body">
-            <div class="checkbox"><label><input type="checkbox" name="' . $i . '1">1</label></div>
-            <div class="checkbox"><label><input type="checkbox" name="' . $i . 'x">x</label></div>
-            <div class="checkbox"><label><input type="checkbox" name="' . $i . '2">2</label></div>
+            <div class="checkbox"><label><input type="checkbox" name="' . $i . '1">'.$Lang["1"].'</label></div>
+            <div class="checkbox"><label><input type="checkbox" name="' . $i . 'x">'.$Lang["x"].'</label></div>
+            <div class="checkbox"><label><input type="checkbox" name="' . $i . '2">'.$Lang["2"].'</label></div>
             </div></div>';
     }
     echo'<br><button class="btn btn-primary btn-default" type="submit" name="subDoLoginAction" style="margin-top: 10px">'.$Lang["submit"].'</button>
