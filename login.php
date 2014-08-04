@@ -11,6 +11,7 @@
                 <div align="right"><button class="btn btn-primary " type="submit" name="subDoLoginAction" style="margin-top: 5px" >Logga in</button></div>
 
                 <?php
+                
                 if (isset($_POST['subDoLoginAction'])) {
 
                     doLogin();
@@ -35,7 +36,13 @@
                         $connect = mysql_connect($url, $user, $password) or error("Connection problem.");
                         mysql_select_db($db) or error("Couldn't connect to the database");
 
-
+                        
+                        $table_check = mysql_query("SHOW TABLES LIKE '".$table."'");
+                        $table_exists = mysql_num_rows($table_check) > 0;
+                        if(!$table_exists){
+                            error('No answers created yet. Please go to <a href="admin/index.php">/admin/</a>');
+                        }
+                        
                         $query = mysql_query("SELECT * FROM " . $table . " WHERE name='$name'");
 
                         $numrow = mysql_num_rows($query);
