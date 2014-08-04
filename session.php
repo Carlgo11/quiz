@@ -1,6 +1,7 @@
 <?php
+
 session_start();
-if(!$_SESSION['name']){
-    header('Location: '.'login.php');
+if (!$_SESSION['name']) {
+    header('Location: ' . 'login.php');
 }
 ?>

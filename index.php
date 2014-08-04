@@ -9,6 +9,7 @@ if (isset($_POST['subDoLoginAction'])) {
 }
 
 function answer() {
+    include 'lang.php';
     $config = parse_ini_file("config.ini");
 
     $name = $_SESSION['name'];
@@ -31,15 +32,16 @@ function answer() {
                 ';
     for ($i = 1; $i <= $q; $i++) {
         echo '<div name="q' . $i . '" style="margin-top: 40px">
-            <h2>Fråga ' . $i . ':</h2>
+            <div class="panel panel-default"><div class="panel-heading">
+            <h2>' . $Lang["question"] . ' ' . $i . ':</h2></div><div class="panel-body">
             <div class="checkbox"><label><input type="checkbox" name="' . $i . '1">1</label></div>
             <div class="checkbox"><label><input type="checkbox" name="' . $i . 'x">x</label></div>
             <div class="checkbox"><label><input type="checkbox" name="' . $i . '2">2</label></div>
-            </div>';
+            </div></div>';
     }
     echo'
             <br><div class="alert alert-danger"><p>Dubbelkolla att du svarat på alla frågor innan du skickar.</p><p> Fler än ett svar på varje fråga gör svaret ogiltigt!</p></div>
-            <button class="btn btn-primary btn-default" type="submit" name="subDoLoginAction" style="margin-top: 10px">Skicka</button>
+            <button class="btn btn-primary btn-default" type="submit" name="subDoLoginAction" style="margin-top: 10px">' . $Lang["submit"] . '</button>
             
             
         </form>

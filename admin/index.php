@@ -83,6 +83,7 @@ function post() {
 }
 
 function setup($q) {
+    include '../lang.php';
     $result = 0;
     include '../resources/header.php';
     echo '<body>
@@ -91,13 +92,14 @@ function setup($q) {
         <h2>Enter the correct answers</h2>';
     for ($i = 1; $i <= $q; $i++) {
         echo '<div name="q' . $i . '" style="margin-top: 40px">
-            <h2>Question ' . $i . ':</h2>
+            <div class="panel panel-default"><div class="panel-heading">
+            <h2>Question ' . $i . ':</h2></div><div class="panel-body">
             <div class="checkbox"><label><input type="checkbox" name="' . $i . '1">1</label></div>
             <div class="checkbox"><label><input type="checkbox" name="' . $i . 'x">x</label></div>
             <div class="checkbox"><label><input type="checkbox" name="' . $i . '2">2</label></div>
-            </div>';
+            </div></div>';
     }
-    echo'<br><button class="btn btn-primary btn-default" type="submit" name="subDoLoginAction" style="margin-top: 10px">Submit</button>
+    echo'<br><button class="btn btn-primary btn-default" type="submit" name="subDoLoginAction" style="margin-top: 10px">'.$Lang["submit"].'</button>
         </form></div>
     </body>
 </html>';
