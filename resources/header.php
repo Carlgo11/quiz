@@ -8,5 +8,5 @@
         <link rel="icon" type="image/vnd.microsoft.icon"  href="./resources/favicon.ico"/>
         <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
         <link href="http://getbootstrap.com/examples/signin/signin.css" rel="stylesheet">
-        <title><?php include './lang.php'; echo $Lang['title']; ?></title>
+        <title>""</title>
     </head>

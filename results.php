@@ -8,6 +8,7 @@
 
             <?php
             include 'session.php';
+            include 'lang.php';
 
             $config = parse_ini_file("config.ini");
 
@@ -41,7 +42,7 @@
             echo $Lang['results2'] . $result . $Lang['results3'] . $o .".";
             echo "</div>";
 
-            mysql_query("UPDATE `" . $db . "` SET `result` = '" . $result . "' WHERE name='" . $name . "'");
+            mysql_query("UPDATE `" . $table . "` SET `result` = '" . $result . "' WHERE name='" . $name . "'");
             ?>
         </div>
     </body>

@@ -28,7 +28,7 @@
         $password = $config['password'];
         $db = $config['database'];
         $table = $config['table'];
-        $q = 24;
+        $q = $config['questions'];
 
         if ($enabled) {
             $connect = mysql_connect($url, $user, $password) or error("Connection problem.");
@@ -52,15 +52,14 @@
                 for ($i = 1; $i <= $q; $i++) {
                     $s[] = "`q" . $i . "`";
                 }
-                for ($j = 0; $j < $i; $j++) {
+                for ($j = 1; $j < $i; $j++) {
                     $w[] = "NULL";
                 }
 
                 $sunq = implode(", ", $s);
                 $wunq = implode(", ", $w);
-                $qs = "INSERT INTO `" . $table . "` (`name`, `result`, " . $sunq . ") VALUES ('" . $name . "', NULL, '.$wunq.');";
+                $qs = "INSERT INTO `" . $table . "` (`name`, `result`, " . $sunq . ") VALUES ('" . $name . "', NULL, " . $wunq . ");";
                 $query = mysql_query($qs);
-
                 header('Location: index.php');
                 $_SESSION['name'] = $name;
             } else {

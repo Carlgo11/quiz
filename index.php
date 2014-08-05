@@ -38,19 +38,15 @@ function answer() {
         echo '<div name="q' . $i . '"'.$top.' >
             <div class="panel panel-default"><div class="panel-heading">
             <h2>' . $Lang["question"] . ' ' . $i . ':</h2></div><div class="panel-body">
-            <div class="checkbox"><label><input type="checkbox" name="' . $i . '1">'.$Lang["1"].'</label></div>
-            <div class="checkbox"><label><input type="checkbox" name="' . $i . 'x">'.$Lang["x"].'</label></div>
-            <div class="checkbox"><label><input type="checkbox" name="' . $i . '2">'.$Lang["2"].'</label></div>
+            <div class="checkbox"><label><input type="radio"  name="' . $i . '" value="1" >'.$Lang["1"].'</label></div>
+            <div class="checkbox"><label><input type="radio"  name="' . $i . '" value="x" >'.$Lang["x"].'</label></div>
+            <div class="checkbox"><label><input type="radio" required="" name="' . $i . '" value="2" >'.$Lang["2"].'</label></div>
             </div></div>';
     }
     echo'
-            <br><div class="alert alert-danger"><p>Dubbelkolla att du svarat på alla frågor innan du skickar.</p><p> Fler än ett svar på varje fråga gör svaret ogiltigt!</p></div>
-            <button class="btn btn-primary btn-default" type="submit" name="subDoLoginAction" style="margin-top: 10px">' . $Lang["submit"] . '</button>
-            
-            
+            <button class="btn btn-primary btn-default" type="submit" name="subDoLoginAction" style="margin-top: 30px">' . $Lang["submit"] . ' <span class="glyphicon glyphicon-saved"></start></button>
         </form>
         </div>
-        
     </body>
 </html>';
 }
@@ -67,41 +63,34 @@ function send() {
     $q = $config['questions'];
 
     $connect = mysql_connect($url, $user, $password) or die("Connection problem.");
-    mysql_select_db($db) or die("Couldn't connect to database");
+    mysql_select_db($db) or die("Couldn't connect to database"); 
 
 
     $right = 0;
     $w = array();
     for ($i = 1; $i <= $q; $i++) {
 
-        $one;
-        $x;
-        $two;
-        if (empty($_POST[$i . "1"])) {
-            $one = 0;
-        } else {
-            $one = 1;
+        $r;
+        if (!empty($_POST[$i])) {
+        if ($_POST[$i] == "1") {
+            $r = "1";
         }
-        echo $one;
 
-        if (empty($_POST[$i . "x"])) {
-            $x = 0;
-        } else {
-            $x = 1;
+        if ($_POST[$i] == "x") {
+            $r = "x";
         }
-        echo $x;
 
-        if (empty($_POST[$i . "2"])) {
-            $two = 0;
-        } else {
-            $two = 1;
+        if ($_POST[$i] == "2") {
+            $r = "2";
         }
-        echo $two;
-        $w[] = "`q" . $i . "` = '" . $one . $x . $two . "'";
+        }
+        echo $r;
+        $w[] = "`q" . $i . "` = '" . $r . "'";
     }
     $e = implode(", ", $w);
 
     $qu = "UPDATE " . $table . " SET " . $e . " WHERE name='$name'";
+    
     echo " " . $qu;
     $query = mysql_query($qu);
 
