@@ -27,11 +27,15 @@ function answer() {
     include 'resources/header.php';
     echo '
     <body>
-        <div class="container" style="margin-top: 80px">
+        <div class="container">
         <form role="form" action="" method="POST">
                 ';
     for ($i = 1; $i <= $q; $i++) {
-        echo '<div name="q' . $i . '" style="margin-top: 40px">
+        $top = "";
+        if($i != 1){
+            $top = 'style="margin-top: 40px"';
+        }
+        echo '<div name="q' . $i . '"'.$top.' >
             <div class="panel panel-default"><div class="panel-heading">
             <h2>' . $Lang["question"] . ' ' . $i . ':</h2></div><div class="panel-body">
             <div class="checkbox"><label><input type="checkbox" name="' . $i . '1">'.$Lang["1"].'</label></div>

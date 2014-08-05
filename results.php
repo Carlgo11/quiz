@@ -26,19 +26,19 @@
 
             $result = 0;
 
-            $a = mysql_query("SELECT * FROM " . $table) or die(mysql_error());
-            $ba = "SELECT * FROM " . $answers . " WHERE `name`='" . $name . "'";
+            $a = mysql_query("SELECT * FROM " . $answers) or die(mysql_error());
+            $ba = "SELECT * FROM " . $table . " WHERE `name`='" . $name . "'";
             $bc = mysql_query($ba) or die(mysql_error());
             $ra = mysql_fetch_array($a);
             $rb = mysql_fetch_array($bc);
-            for ($i = 1; $i <= $_SESSION['q']; $i++) {
+            for ($i = 1; $i <= $q; $i++) {
                 if ($ra['r' . $i] == $rb['q' . $i]) {
                     $result++;
                 }
             }
             $o = $q;
-            echo "<div class='panel panel-default'><div class='panel-heading'>Resultat för grupp <b>" . ucfirst($name) . "</b></div><div class='panel-body'>";
-            echo "Ni hade " . $result . " rätt av " . $o;
+            echo "<div class='panel panel-default'><div class='panel-heading'>".$Lang['results1']." <b>" . ucfirst($name) . "</b></div><div class='panel-body'>";
+            echo $Lang['results2'] . $result . $Lang['results3'] . $o .".";
             echo "</div>";
 
             mysql_query("UPDATE `" . $db . "` SET `result` = '" . $result . "' WHERE name='" . $name . "'");

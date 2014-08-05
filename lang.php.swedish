@@ -1,0 +1,19 @@
+<?php
+# Swedish translation of lang.php.
+
+$Lang['title'] = "";
+$Lang['question'] = "Fråga";
+$Lang['login'] = "Logga in";
+$Lang['submit'] = "Skicka";
+$Lang['login-message'] = "Skriv in ditt gruppnamn";
+$Lang['password-message'] = "Skriv in admin lösenord";
+$Lang['name'] = "Namn";
+$Lang['password'] = "Lösenord";
+$Lang['1'] = "1";
+$Lang['x'] = "X";
+$Lang['2'] = "2";
+$Lang['results1'] = "Resultat för grupp";
+$Lang['results2'] = "Ni hade ";
+$Lang['results3'] = " rätt av ";
+
+?>
