@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <?php
-    include '../resources/header.php';
+    include './header.php';
     include '../lang.php';
     echo'
     <body>
@@ -27,7 +27,7 @@
             header('Location: index.php');
             $_SESSION['admin'] = "true";
         } else {
-            error("Incorrect password. <br> (The password can be found in config.ini)");
+            error("Incorrect password. <br> (The password can be found in config.ini) :".$pass."|".$config['adminpassword']);
         }
     }
 

@@ -19,7 +19,7 @@ function answer() {
     $db = $config['database'];
     $table = $config['table'];
     $q = $config['questions'];
-    $connect = mysql_connect($url, $db, $password) or die("Connection problem.");
+    $connect = mysql_connect($url, $user, $password) or die("Connection problem.");
     mysql_select_db($db) or die("Couldn't connect to database");
 
 

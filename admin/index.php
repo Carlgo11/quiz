@@ -83,7 +83,7 @@ function post() {
 function setup($q) {
     include '../lang.php';
     $result = 0;
-    include '../resources/header.php';
+    include './header.php';
     echo '<body>
         <div class="container" style="margin-top: 80px">
         <form role="form" action="" method="POST">

@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
     <?php
-    include 'resources/header.php';
-    include 'lang.php';
+    include_once 'resources/header.php';
+
     echo'
     <body>
         <div class="container" style="margin-top: 80px">
@@ -32,7 +32,7 @@
 
         if ($enabled) {
             $connect = mysql_connect($url, $user, $password) or error("Connection problem.");
-            mysql_select_db($db) or error("Couldn't connect to the database");
+            mysql_select_db($db) or error("Couldn't connect to the database<br>".  mysql_error());
 
 
             $table_check = mysql_query("SHOW TABLES LIKE '" . $table . "'");
@@ -63,7 +63,8 @@
                 header('Location: index.php');
                 $_SESSION['name'] = $name;
             } else {
-                error("Det finns redan en grupp med det namnet!");
+                
+                error($Lang['groupexists']);
             }
         }
     }
