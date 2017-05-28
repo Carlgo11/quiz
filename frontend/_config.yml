@@ -1,0 +1,10 @@
+title: Quiz
+description: "Quiz"
+url: "quiz.carlgo11.com"
+img: res/favicon.ico
+
+permalink: pretty
+markdown: kramdown
+exclude:
+  - Gemfile
+  - Gemfile.lock

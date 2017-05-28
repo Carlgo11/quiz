@@ -1,0 +1,33 @@
+---
+layout: default
+---
+
+<div id="name" style="margin-bottom: 20px">
+  <div class="panel panel-info">
+    <div class="panel-heading">
+  <h2>Group Name</h2>
+  </div>
+    <div class="panel-body">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-md-8" >
+    <input type="text" id="group-name" class="form-control " required autofocus placeholder="Group Name">
+    </div>
+  </div>
+</div>
+  </div>
+</div>
+
+{% for q in site.data.quiz %}
+<div id="q{{forloop.index}}">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h2>Question {{ forloop.index }}</h2>
+    </div>
+    <div class="panel-body">
+      <div class="checkbox"><label><input type="radio"  name="{{ forloop.index }}" value="1" > 1</label></div>
+      <div class="checkbox"><label><input type="radio"  name="{{ forloop.index }}" value="x" > X</label></div>
+      <div class="checkbox"><label><input type="radio"  name="{{ forloop.index }}" value="2" > 2</label></div>
+    </div>
+  </div>
+</div>
+{% endfor %}

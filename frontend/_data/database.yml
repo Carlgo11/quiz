@@ -1,0 +1,2 @@
+database:
+  - url: "//rasp.local/quiz/validate.php" # URL to backend server
