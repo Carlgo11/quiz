@@ -1,9 +1,0 @@
-title: Quiz
-description: "Quiz"
-url: "quiz.carlgo11.com"
-
-permalink: pretty
-markdown: kramdown
-exclude:
-  - Gemfile
-  - Gemfile.lock
