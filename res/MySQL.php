@@ -1,13 +1,15 @@
 <?php
 
-class Mysql {
+class MySQL {
+  
   /*
    * Get number of questions/rows in the questions table.
+   * @return int
    */
-
   public static function getNumberOfQuestions() {
     global $conf;
     global $con;
+    $rows = NULL;
     $query = $con->prepare("SELECT COUNT(`id`) FROM `" . $conf['mysql-questions-table'] . "`");
     $query->execute();
     $query->bind_result($rows);
@@ -18,8 +20,8 @@ class Mysql {
 
   /*
    * Get the correct answers from the questions table.
+   * @return array
    */
-
   public static function getAnswers() {
     global $conf;
     global $con;
@@ -37,20 +39,20 @@ class Mysql {
 
   /*
    * Post the user's answers.
-   * @String answers The user's answers
+   * @param string $answers The user's answers
+   * @return boolean
    */
-
   public static function postAnswers($name, $answers_array) {
     global $conf;
     global $con;
     $answers = implode(",",$answers_array);
-    $query = $con->prepare("INSERT INTO `" . $conf['mysql-answers-table'] . "` (`username`, `answers`) VALUES (?, ?)");
+    $correct = Validate::validateAnswers($answers_array);
+    $query = $con->prepare("INSERT INTO `" . $conf['mysql-answers-table'] . "` (`username`, `answers`, `correct`) VALUES (?, ?, ?)");
     if (false === $query) {
       error_log('prepare() failed: ' . htmlspecialchars($con->error));
       return false;
     }
-
-    $bp = $query->bind_param("ss", $name, $answers);
+    $bp = $query->bind_param("ssi", $name, $answers, $correct);
     if (false === $bp) {
       error_log('bind_param() failed: ' . htmlspecialchars($query->error));
       return false;
@@ -66,29 +68,3 @@ class Mysql {
 
 }
 
-class Validate {
-  /*
-   * match the user's answers to the answers from the questions table.
-   * @String user_answers The user's answers
-   */
-
-  public static function validateAnswers($user_answers) {
-    $correct_answers = Mysql::getAnswers();
-    $result = 0;
-    foreach ($user_answers as $id => $answer) {
-      if ($correct_answer = explode(",", $correct_answers[$id])) {
-        // Multiple correct answers
-        if (in_array($answer, $correct_answer)) {
-          $result++;
-        }
-      } else {
-        // One correct answer
-        if ($answer == $correct_answers[$id]) {
-          $result++;
-        }
-      }
-    }
-    return $result;
-  }
-
-}

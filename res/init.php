@@ -1,7 +1,6 @@
 <?php
 
 if (file_exists(__DIR__ . '/config.php')) {
-
   $conf = include(__DIR__ . '/config.php');
 } else {
   die;

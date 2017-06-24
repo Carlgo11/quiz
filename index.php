@@ -1,5 +1,4 @@
 <?php
-
 include_once 'res/init.php';
 ?>
 <!DOCTYPE html>
@@ -10,7 +9,7 @@ include_once 'res/init.php';
     <meta name="author" content="Carlgo11">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title></title>
+    <title>Quiz</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/main.css">
     <script src="js/jquery.js"></script>
@@ -29,12 +28,12 @@ include_once 'res/init.php';
         <div id="name" style="margin-bottom: 20px">
           <div class="panel panel-info">
             <div class="panel-heading">
-              <h2>Group Name</h2>
+              <h2>Group name</h2>
             </div>
             <div class="panel-body">
               <div class="row">
                 <div class="col-xs-12 col-sm-6 col-md-8" >
-                  <input type="text" name="group-name" id="group-name" class="form-control" required autofocus placeholder="Group Name">
+                  <input type="text" name="group-name" id="group-name" class="form-control" required autofocus placeholder="Group name">
                 </div>
               </div>
             </div>
@@ -42,7 +41,7 @@ include_once 'res/init.php';
         </div>
 
         <?php
-        for ($i = 1; $i <= Mysql::getNumberOfQuestions(); $i++) {
+        for ($i = 1; $i <= MySQL::getNumberOfQuestions(); $i++) {
           ?>
           <div id="q<?php echo($i); ?>">
             <div class="panel panel-default">
@@ -67,7 +66,7 @@ include_once 'res/init.php';
           </div>
         <?php } ?>
 
-        <button class="btn btn-default btn-lg" id="submit" style="margin-top: 30px">Submit <span class="glyphicon glyphicon-send" aria-hidden="true"></span></button>
+        <button class="btn btn-default btn-lg" id="submit" style="margin-top: 30px">Skicka <span class="glyphicon glyphicon-send" aria-hidden="true"></span></button>
       </form>
     </div>
   </body>
