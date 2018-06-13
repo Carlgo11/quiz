@@ -22,10 +22,10 @@ include_once 'res/init.php';
   </head>
 
   <body>
-    <div class="container" style="margin-top: 10%;margin-bottom: 5%">
+    <div class="container">
       <div class="checkmark hidden" id="alert"><span class="glyphicon glyphicon-ok"></span></div>
       <form action="" enctype="multipart/form-data" method="POST" accept-charset="UTF-8" id="form">
-        <div id="name" style="margin-bottom: 20px">
+        <div id="name">
           <div class="panel panel-info">
             <div class="panel-heading">
               <h2>Group name</h2>
@@ -42,14 +42,14 @@ include_once 'res/init.php';
 
         <?php
         for ($i = 1; $i <= MySQL::getNumberOfQuestions(); $i++) {
-          ?>
+            ?>
           <div id="q<?php echo($i); ?>">
             <div class="panel panel-default">
               <div class="panel-heading">
                 <h2>Question <?php echo($i); ?></h2>
               </div>
               <div class="panel-body">
-                <div class="btn-group btn-group-justified" role="group" id="answer-group" style="margin-top: 5px;margin-bottom: 5px">
+                <div class="btn-group btn-group-justified" role="group" id="answer-group">
                   <div class="btn-group" role="group">
                     <button type="button" class="btn btn-default answer-btn" id="<?php echo($i); ?>1" onclick="activate(<?php echo($i); ?>, '1')">1</button>
                   </div>
@@ -64,9 +64,10 @@ include_once 'res/init.php';
               <input class="hidden" id="<?php echo($i); ?>answer" name="<?php echo($i); ?>answer">
             </div>
           </div>
-        <?php } ?>
+        <?php
+        } ?>
 
-        <button class="btn btn-default btn-lg" id="submit" style="margin-top: 30px">Skicka <span class="glyphicon glyphicon-send" aria-hidden="true"></span></button>
+        <button class="btn btn-default btn-lg" id="submit">Send <span class="glyphicon glyphicon-send" aria-hidden="true"></span></button>
       </form>
     </div>
   </body>

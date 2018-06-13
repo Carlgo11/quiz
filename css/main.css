@@ -1,3 +1,32 @@
+.answer-btn {
+  height: 60px;
+}
+
+.panel-heading {
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.container {
+  margin-top: 10%;
+  margin-bottom: 5%
+}
+
+#name {
+  margin-bottom: 20px;
+}
+
+#answer-group {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+#submit {
+  margin-top: 30px;
+}
+
 .checkmark {
   position: absolute;
   margin: auto;
@@ -7,7 +36,7 @@
   left: 0;
   width: 200px;
   height: 200px;
-  z-index:9999;
+  z-index: 9999;
   font-size: 13em;
   color: green
 }
